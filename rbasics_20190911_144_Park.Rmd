@@ -103,12 +103,20 @@ my_function <- function(VARIABLE_NAME){
 The functions you define can have multiple arguments as well as default values. For example, we can define a function that computes either the arithmetic or geometric average depending on a user defined variable like this:
 
 ```{r}
-avg <- function(x, arithmetic = TRUE){n <- length(x)}ifelse(arithmetic, sum(x)/n, prod(x)^(1/n))}
+avg <- function(x, arithmetic = TRUE){
+  n <- length(x)
+  ifelse(arithmetic, sum(x)/n, prod(x)^(1/n))
+}
 ```
 
 We will learn more about how to create functions through experience as we face more complex tasks.
 #4.3 Namespaces
 Once you start becoming more of an R expert user, you will likely need to load several add-on packages for some of your analysis. Once you start doing this, it is likely that two packages use the same name for two different functions. And often these functions do completely different things. In fact, you have already encountered this becuase both dplyr and the R-base stats package define a filter function. There are five other examples in dplyr. We know this becasue when we first load dplyr we see the following message:
+```{r}
+install.packages(c("dplyr"))
+library(dplyr)
+```
+
 ```{r}
 The following objects are masked from 'package:stats': filter, lag
 the following objects are masked from 'package:base': intersect, setdiff, setequal, union
@@ -129,7 +137,7 @@ stats::filter
 
 If we want to be absolutely sure we use the dplyr filter we can use
 ```{r}
-dpltr::filter
+dplyr::filter
 ```
 Also note that if we want to use a function in a package without loading the entire package, we can use the double colon as well.
 
